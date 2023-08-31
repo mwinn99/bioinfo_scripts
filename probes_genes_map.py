@@ -3,10 +3,11 @@ import wrenlab.normalize
 
 # Quantile normalization + collapse from probes to genes
 
-df = pd.read_csv("data/df_gsm.csv")
+df = pd.read_csv("data/df_gsm.csv.gz", compression="gzip")
 df.set_index('gsm', inplace=True)
-
-final_df = wrenlab.normalize.quantile(df)
+df = df.T
+df = wrenlab.normalize.quantile(df)
+final_df = df.T
 
 def fn():
     path = "data/GPL570.map.tsv"
@@ -18,6 +19,4 @@ def fn():
 
 
 M = fn()
-
-final_df = final_df.T
 final_df = final_df.groupby(M, axis=1).mean()
