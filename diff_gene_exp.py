@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("/path/to/your/dataframe.csv")
+df = pd.read_csv("data/GSM_final_genes.csv.gz")
 
 def replace_dot_with_underscore(df):
     df.rename(columns=lambda x: x.replace(".", "_"), inplace=True)
